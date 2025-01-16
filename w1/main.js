@@ -1,0 +1,1 @@
+console.log{"wwek 1 - Hello World"}
