@@ -34,13 +34,6 @@ function determineHouseSizePts(size) {
      return houseHoldPoints;
   }
   
-  function displayOutObj(obj){
-    console.log(obj);
-    const output = document.getElementById("output");
-    const newH2 = document.createElement("h2");
-    newH2.textContent = `Carbon Footprint total is ${obj.cfpTotal}`;
-    output.appendChild(newH2);
-  }
   
   function start(houseHoldMembers, houseSize) {
     const houseHoldPTS = determineHouseHoldPts(houseHoldMembers);
@@ -51,25 +44,32 @@ function determineHouseSizePts(size) {
       houseS: houseSize,
       houseMPTS: houseHoldPTS,
       houseSPTS: houseSizePts,
-      cfpTotal: total
+      cfpTotal: total,
     });
   
   }
 
   
   function displayOutput() {
-      for(obj of cfpData) {
-        console.log(obj)
-          const output = document.getElementById("output");
-          const newH2 = document.createElement("h2");
-          newH2.textContent = `Carbon Footprint total is ${obj.cfpTotal}`;
-          // const newH3 = document.createElement("h3");
-          // newH3.textCoNTENT = 'Based on Number in Household and Size of Home'
-          // newP.textContent = `This number is based on the number of members of the household ${arr[0]} (score: ${arr[3]}) `;
-          // newP.textContent += `and a ${arr[1]} size of home (score ${arr[2]})`
-          output.appendChild(newH2);
-          // output.appendChild(newH3);
-          // output.appendChild(newP);
+    if (cfpData.length === 0) {
+      console.log();
+      return;
+    }
+  
+    for (obj of cfpData) {
+      console.log(obj)
+      const output = document.getElementById("output");
+      const newH2 = document.createElement("h2");
+      newH2.textContent = `Carbon Footprint total is ${obj.cfpTotal}`;
+      const newH3 = document.createElement("h3");
+      newH3.textContent = "Based on  Number in Size of Home";
+      const newP = document.createElement("p");
+      newP.textContent = `This number is based on the number of members of the household of ${obj.houseM} (score: ${obj.houseMPTS}) `;
+      newP.textContent += `and a ${obj.houseS} size of home (score ${obj.houseSPTS})`;
+  
+      output.appendChild(newH2);
+      output.appendChild(newH3);
+      output.appendChild(newP);
     }
   }
   
