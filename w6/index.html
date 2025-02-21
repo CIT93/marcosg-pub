@@ -26,12 +26,12 @@
       <fieldset>
         <legend>Calculating Your Carbon Footprint Points</legend>
         <div>
-          <label>First Name:</label>
-          <input type="text" name="firstname" required />
+          <label for="">First Name:</label>
+          <input type="text" name="firstname" maxlength="20" required />
         </div>
         <div>
-          <label>Last Name:</label>
-          <input type="text" name="lastname" required />
+          <label for="">Last Name:</label>
+          <input type="text" name="lastname" maxlength="20" required />
         </div>
         <div>
           <label>Count the members of your household</label>
@@ -39,16 +39,17 @@
         </div>
         <div>
           <label>Consider the size of your home</label>
-          <!-- <input type="number" name="housem" required /> -->
+          <!-- <input type="text" name="houses" required /> -->
           <select name="houses" required>
             <option value="">---Please enter size of home---</option>
             <option value="apt">Apartment</option>
             <option value="large">Large</option>
             <option value="medium">Medium</option>
             <option value="small">Small</option>
-        </select>
+          </select>
         </div>
-        <button type="submit">Submit</button>
+
+        <button type="Submit">Submit</button>
       </fieldset>
     </form>
     <div id="output"></div>
