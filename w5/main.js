@@ -1,24 +1,25 @@
 const moviesArr = [
-  { title: "The Fast and the Furious", year: 2001, rating: 7 },
-  { title: "2 Fast 2 Furious", year: 2003, rating: 6 },
-  { title: "The Fast and the Furious: Tokyo Drift", year: 2006, rating: 6 },
-  { title: "Fast & Furious", year: 2009, rating: 7 },
-  { title: "Fast Five", year: 2011, rating: 8 },
-  { title: "Fast & Furious 6", year: 2013, rating: 7 },
-  { title: "Furious 7", year: 2015, rating: 8 },
-  { title: "The Fate of the Furious", year: 2017, rating: 7 },
-  { title: "F9: The Fast Saga", year: 2021, rating: 5 }
+  { title: "The Fast and the Furious", year: 2001, rating: 6.8, watched: 5 },
+  { title: "2 Fast 2 Furious", year: 2003, rating: 5.9, watched: 3 },
+  { title: "Fast & Furious", year: 2009, rating: 6.6, watched: 4 },
+  { title: "Fast Five", year: 2011, rating: 7.3, watched: 6 },
+  { title: "Furious 7", year: 2015, rating: 7.1, watched: 7 },
+  { title: "The Fate of the Furious", year: 2017, rating: 6.6, watched: 2 },
+  { title: "F9: The Fast Saga", year: 2021, rating: 5.2, watched: 1 },
 ];
 
 function displayOutMovies() {
   const output = document.getElementById("output");
-  
-  for (const obj of moviesArr) {
-    console.log(obj);
-    const newH1 = document.createElement("h1");
-    newH1.textContent = `${obj.title} (released in ${obj.year}) has a rating of ${obj.rating}`;
-    output.appendChild(newH1);
-  }
+
+  moviesArr.forEach((Obj) => {
+    console.log(Obj);
+
+    if (Obj.rating > 6 && Obj.watched < 5 || Obj.rating < 7) {
+      const newH1 = document.createElement("h1");
+      newH1.textContent = `${Obj.title} (released in ${Obj.year}) has a rating of ${Obj.rating}/10 and has been watched ${Obj.watched} times.`;
+      output.appendChild(newH1);
+    }
+  });
 }
 
 displayOutMovies();
