@@ -1,41 +1,24 @@
 import { renderTbl } from "./render.js";
 
 const FORM = document.getElementById("form");
-const OUTPUT = document.getElementById("output");
 const cfpData = [];
 
 function determineHouseSizePts(size) {
-  let houseSizePoints = 0;
-  if (size === "large") {
-    houseSizePoints = 10;
-  } else if (size === "medium") {
-    houseSizePoints = 7;
-  } else if (size === "small") {
-    houseSizePoints = 4;
-  } else if (size === "apt") {
-    houseSizePoints = 2;
-  }
-  return houseSizePoints;
+  if (size === "large") return 10;
+  if (size === "medium") return 7;
+  if (size === "small") return 4;
+  if (size === "apt") return 2;
+  return 0;
 }
 
 function determineHouseHoldPts(numberInHousehold) {
-  let houseHoldPoints = 0;
-  if (numberInHousehold === 1) {
-    houseHoldPoints = 14;
-  } else if (numberInHousehold === 2) {
-    houseHoldPoints = 12;
-  } else if (numberInHousehold === 3) {
-    houseHoldPoints = 10;
-  } else if (numberInHousehold === 4) {
-    houseHoldPoints = 8;
-  } else if (numberInHousehold === 5) {
-    houseHoldPoints = 6;
-  } else if (numberInHousehold === 6) {
-    houseHoldPoints = 4;
-  } else if (numberInHousehold > 6) {
-    houseHoldPoints = 2;
-  }
-  return houseHoldPoints;
+  if (numberInHousehold === 1) return 14;
+  if (numberInHousehold === 2) return 12;
+  if (numberInHousehold === 3) return 10;
+  if (numberInHousehold === 4) return 8;
+  if (numberInHousehold === 5) return 6;
+  if (numberInHousehold === 6) return 4;
+  return numberInHousehold > 6 ? 2 : 0;
 }
 
 function start(houseHoldMembers, houseSize, firstName, lastName) {
@@ -44,30 +27,36 @@ function start(houseHoldMembers, houseSize, firstName, lastName) {
   const total = houseHoldPTS + houseSizePts;
 
   cfpData.push({
-    firstName: firstName,
-    lastName: lastName,
+    firstName,
+    lastName,
     houseM: houseHoldMembers,
     houseS: houseSize,
     houseMPTS: houseHoldPTS,
     houseSPTS: houseSizePts,
     cfpTotal: total,
   });
+
+  renderTbl(cfpData); // ✅ Pass data to the table rendering function
 }
 
 FORM.addEventListener("submit", function (e) {
   e.preventDefault();
 
-  const firstName = FORM.firstname.value;
-  const lastName = FORM.lastname.value;
+  const firstName = FORM.firstname.value.trim();
+  const lastName = FORM.lastname.value.trim();
   const houseMembers = parseInt(FORM.housem.value);
   const houseSize = FORM.houses.value;
 
-  start(houseMembers, houseSize, firstName, lastName);
+  if (!firstName || !lastName || !houseMembers || !houseSize) {
+    alert("Please fill out all fields correctly.");
+    return;
+  }
 
-  //displayOutput();
-  renderTbl();
+  start(houseMembers, houseSize, firstName, lastName);
   FORM.reset();
 });
+
+;
 // it wont work because we are using two different terms for apartment betwene the index and js.
 //assume the user are not going to give you good data
 
