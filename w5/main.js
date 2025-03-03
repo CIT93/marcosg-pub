@@ -1,3 +1,4 @@
+const output = document.getElementById("output");
 const moviesArr = [
   { title: "The Fast and the Furious", year: 2001, rating: 6.8, watched: 5 },
   { title: "2 Fast 2 Furious", year: 2003, rating: 5.9, watched: 3 },
@@ -8,21 +9,61 @@ const moviesArr = [
   { title: "F9: The Fast Saga", year: 2021, rating: 5.2, watched: 1 },
 ];
 
+const moviesTable = document.getElementById("movies-data");
 function displayOutMovies() {
-  const output = document.getElementById("output");
+  const table = document.createElement("table");
 
-  moviesArr.forEach((Obj) => {
-    console.log(Obj);
+  const thead = document.createElement("thead");
+  const tr = document.createElement("tr");
 
-    if (Obj.rating > 6 && Obj.watched < 5 || Obj.rating < 7) {
+  const headingTextArr = ["Title", "Year", "Rating", "Watched"];
+  headingTextArr.forEach(function (text) {
+    const th = document.createElement("th");
+    th.textContent = text;
+    tr.appendChild(th);
+  });
+
+  thead.appendChild(tr);
+  table.appendChild(thead);
+
+  const tbody = document.createElement("tbody");
+
+  moviesArr.forEach(function (obj) {
+    moviesTable.innerHTML = "";
+    output.innerHTML = "";
+    if (obj.rating > 6 && obj.watched < 5) {
       const newH1 = document.createElement("h1");
-      newH1.textContent = `${Obj.title} (released in ${Obj.year}) has a rating of ${Obj.rating}/10 and has been watched ${Obj.watched} times.`;
+      newH1.textContent = `Interesting movies to watch!`;
       output.appendChild(newH1);
+
+      const tr = document.createElement("tr");
+
+      const tdTitle = document.createElement("td");
+      const tdYear = document.createElement("td");
+      const tdRating = document.createElement("td");
+      const tdWatched = document.createElement("td");
+
+      tdTitle.textContent = obj.title;
+      tdYear.textContent = obj.year;
+      tdRating.textContent = obj.rating;
+      tdWatched.textContent = obj.watched;
+
+      tr.appendChild(tdTitle);
+      tr.appendChild(tdYear);
+      tr.appendChild(tdRating);
+      tr.appendChild(tdWatched);
+
+      tbody.appendChild(tr);
     }
   });
+
+  table.appendChild(tbody);
+
+  moviesTable.appendChild(table);
 }
 
 displayOutMovies();
+
 
 
 
