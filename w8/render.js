@@ -72,7 +72,10 @@ function renderTblBody(data) {
 function renderTbl(data) {
   TBL.innerHTML = ""; // Clear the table before rendering
 
-  if (data.length === 0) return; // Prevent rendering if no data
+  if (data.length === 0) {
+    TBL.innerHTML = "<p>No data available</p>"; // Optional: show message when no data
+    return;
+  }
 
   const table = renderTblHeading();
   const tbody = renderTblBody(data);
@@ -99,8 +102,13 @@ FORM.addEventListener("submit", function (event) {
     data.push(newData); // Add new entry
   }
 
+  console.log("Current Data Array: ", data); // Debugging log
+
   renderTbl(data);
   FORM.reset();
 });
+
+// Initial rendering when there’s data
+renderTbl(data);
 
 export { renderTbl };
