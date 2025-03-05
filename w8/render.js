@@ -1,114 +1,75 @@
-const TBL = document.getElementById("tab-data");
-const FORM = document.getElementById("myForm"); // Replace with actual form ID
-const data = []; // Example data array
+const TBL = document.getElementById("tab-data")
 
-function renderTblHeading() {
-  const table = document.createElement("table");
-  const thead = document.createElement("thead");
-  const tr = document.createElement("tr");
-  const headingTextArr = ["Name", "Household", "HouseSize", "Footprint", "Actions"];
+function renderTBLButtons(index, data){
+  const td = document.createElement("td")
+  const btnEdit = document.createElement("Button")
+  const btnDel = document.createElement("Button") 
+  btnEdit.textContent = "Edit"
+  btnDel.textContent = "Del"
+  td.appendChild(btnEdit)
   
-  headingTextArr.forEach(function (text) {
-    const th = document.createElement("th");
-    th.textContent = text;
-    tr.appendChild(th);
-  });
+  td.appendChild(btnDel) 
+    btnDel.addEventListener('click', function(e) {
+    console.log("hello from inside the delete button")
+    console.log(e)
+    data.splice(index, 1)
+    renderTBL(data)
+}) 
 
-  thead.appendChild(tr);
-  table.appendChild(thead);
-  return table;
-}
+btnEdit.addEventListener('click', function(e){
 
-function renderTblBtn(index, data) {
-  const td = document.createElement("td");
-  const btnEdit = document.createElement("button");
-  const btnDel = document.createElement("button");
-
-  btnEdit.textContent = "Edit";
-  btnDel.textContent = "Del";
-
-  td.appendChild(btnEdit);
-  td.appendChild(btnDel);
-
-  btnDel.addEventListener("click", function () {
-    data.splice(index, 1);
-    renderTbl(data);
-  });
-
-  btnEdit.addEventListener("click", function () {
-    FORM.elements["name"].value = data[index].name;
-    FORM.elements["household"].value = data[index].household;
-    FORM.elements["houseSize"].value = data[index].houseSize;
-    FORM.elements["footprint"].value = data[index].footprint;
-    
-    FORM.dataset.editIndex = index; // Save index for updating
-  });
-
+  })
   return td;
 }
 
-function renderTblBody(data) {
-  const tbody = document.createElement("tbody");
 
-  data.forEach(function (obj, index) {
-    const tr = document.createElement("tr");
-
-    for (const [key, value] of Object.entries(obj)) {
-      if (key !== "lastName" && key !== "houseMPTS" && key !== "houseSPTS") {
+function renderRow(data) {
+  const tbody = document.createElement("tbody")
+  data.forEach(function(obj, index) {
+    console.log(index)
+    const tr = document.createElement("tr")
+    for(const [key, value] of Object.entries(obj)) {
+      if (key !== "lastname" && key !== "houseHpts" && key !== "houseSpts" ) {
         const td = document.createElement("td");
         td.textContent = value;
-        tr.appendChild(td);
+        tr.appendChild(td);   
+        
       }
     }
-
-    const td = renderTblBtn(index, data);
-    tr.appendChild(td);
-    tbody.appendChild(tr);
-  });
-
-  return tbody;
+    const td = renderTBLButtons(index, data);
+    tr.append(td)
+    tbody.appendChild(tr);  
+    });
+return tbody;
 }
 
-function renderTbl(data) {
-  TBL.innerHTML = ""; // Clear the table before rendering
-
+function renderTBL(data) {
+  TBL.innerHTML = "";
   if (data.length === 0) {
-    TBL.innerHTML = "<p>No data available</p>"; // Optional: show message when no data
-    return;
-  }
-
-  const table = renderTblHeading();
-  const tbody = renderTblBody(data);
+  return; 
+}
+  const table = renderTBlHeading()
+  const tbody = renderRow(data)
   table.appendChild(tbody);
   TBL.appendChild(table);
-}
+} 
+  
+  function renderTBlHeading() {
+    TBL.innerHTML = "";
+    const table = document.createElement("table");
+    const thead = document.createElement("thead");
+    const tr = document.createElement("tr");
+    const headingText = ["Name", "household", "housesize", "total", "actions"]
+    headingText.forEach(function(text,) {
+      const th = document.createElement("th");
+      th.textContent = text;
+      tr.appendChild(th);
+      console.log(th);
+  } )
+  thead.appendChild(tr);
+  table.appendChild(thead);
+  console.log(table);
+  TBL.appendChild(table);
+  return table} 
 
-// Handle form submission for adding or updating entries
-FORM.addEventListener("submit", function (event) {
-  event.preventDefault();
-
-  const index = FORM.dataset.editIndex;
-  const newData = {
-    name: FORM.elements["name"].value,
-    household: FORM.elements["household"].value,
-    houseSize: FORM.elements["houseSize"].value,
-    footprint: FORM.elements["footprint"].value,
-  };
-
-  if (index !== undefined) {
-    data[index] = newData; // Update existing entry
-    delete FORM.dataset.editIndex; // Clear edit mode
-  } else {
-    data.push(newData); // Add new entry
-  }
-
-  console.log("Current Data Array: ", data); // Debugging log
-
-  renderTbl(data);
-  FORM.reset();
-});
-
-// Initial rendering when there’s data
-renderTbl(data);
-
-export { renderTbl };
+  export {renderTBL, renderTBlHeading}
