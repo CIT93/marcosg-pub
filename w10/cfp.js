@@ -1,18 +1,18 @@
-const determineHouseSizePts = function(size) {
-    let houseSizePoints = 0;
-    if (size === "large") {
-      houseSizePoints = 10;
-    } else if (size === "medium") {
-      houseSizePoints = 7;
-    } else if (size === "small") {
-      houseSizePoints = 4;
-    } else if (size === "apt") {
-      houseSizePoints = 2;
-    }
-    return houseSizePoints;
+function determineHouseSizePts(size = "medium") {
+  let houseSizePoints = 0;
+  if (size === "large") {
+    houseSizePoints = 10;
+  } else if (size === "medium") {
+    houseSizePoints = 7;
+  } else if (size === "small") {
+    houseSizePoints = 4;
+  } else if (size === "apt") {
+    houseSizePoints = 2;
   }
-  
-   const determineHouseHoldPts = function(numberInHousehold) {
+  return houseSizePoints;
+}
+
+  const determineHouseHoldPts = (numberInHousehold =1 ) => {
     let houseHoldPoints = 0;
     if (numberInHousehold === 1) {
       houseHoldPoints = 14;
@@ -31,4 +31,5 @@ const determineHouseSizePts = function(size) {
     }
     return houseHoldPoints;
   }
+
   export { determineHouseSizePts, determineHouseHoldPts };

@@ -1,18 +1,18 @@
 import { renderTbl } from "./render.js";
 import { determineHouseSizePts, determineHouseHoldPts } from "./cfp.js";
-import { FORM, FNAME, LNAME, SUBMIT} from "./global.js";
+import { FORM, FNAME, LNAME, SUBMIT } from "./global.js";
 import { saveLS, cfpData } from "./storage.js";
 
-const start = function(houseHoldMembers, houseSize, firstName, lastName) {
-  const houseHoldPTS = determineHouseHoldPts(houseHoldMembers);
-  const houseSizePts = determineHouseSizePts(houseSize);
+const start = (...i) => {
+  const houseHoldPTS = determineHouseHoldPts(i[0]);
+  const houseSizePts = determineHouseSizePts(i[1]);
   const total = houseHoldPTS + houseSizePts;
 
   cfpData.push({
-    firstName: firstName,
-    lastName: lastName,
-    houseM: houseHoldMembers,
-    houseS: houseSize,
+    firstName: i[2],
+    lastName: i[3],
+    houseM: i[0],
+    houseS: i[1],
     houseMPTS: houseHoldPTS,
     houseSPTS: houseSizePts,
     cfpTotal: total,
@@ -21,7 +21,7 @@ const start = function(houseHoldMembers, houseSize, firstName, lastName) {
 renderTbl(cfpData); 
 
 // function to validate a single field
-const validateField = function(event) {
+const validateField = event => {
     const field = event.target.value;
     const fieldId = event.target.id;
     const fieldError = document.getElementById(`${fieldId}Error`);
@@ -38,11 +38,12 @@ const validateField = function(event) {
   LNAME.addEventListener("blur", validateField);
   
  
-FORM.addEventListener("submit", function (e) {
+FORM.addEventListener("submit", e => {
   e.preventDefault();
-if (FNAME.value !== '' && LNAME.value !==''){
+ 
+if ( FNAME.value !== '' && LNAME.value !=='' ){
     SUBMIT.textContent = '';
-  start(FORM.housem.value, FORM.houses.value, parseInt(FNAME.value), LNAME.value);
+  start( parseInt(FORM.housem.value),  FORM.houses.value, FNAME.value, LNAME.value);
   saveLS(cfpData);
   renderTbl(cfpData);
   FORM.reset();
@@ -52,20 +53,25 @@ if (FNAME.value !== '' && LNAME.value !==''){
     
 }
 });
+// rest operator
+//const add2 = function(...a){
+//  return 2+a[3];
+//}
 
-const add2 = function(...a) {
-  return 2 + a[3];
-}
+//const results = add2(1, 2, 3,4);
 
-const result = add2(1, 2, 3, 4);
+// arrow function
 
-// spread argument
+const add2 = a =>  2+a;
+
+
+
+const results = add2(100);
 
 //IIFE
-
-// const a = 3;
+const a = 3; 
 
 (function(a){
-  console.log("inside IIFE");
-  console.log (a);
+console.log("inside IIFE")
+console.log(a)
 })(a);
