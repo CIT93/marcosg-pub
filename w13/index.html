@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 12</title>
+    <style>
+        html {
+            font-size: 22px;
+        }
+        body {
+            background-color: #333;
+            color: whitesmoke;
+        }
+        input:in-range {
+            background-color: lightgreen;
+        }
+        input:out-of-range {
+            background-color: lightcoral;
+        }
+    </style>
+</head>
+<body>
+    <form id="form">
+        <fieldset>
+            <legend>Time to get Fit</legend>
+            <div>
+                <label for="exercise">Type of Exercise</label>
+                <select name="exercise" required>
+                    <option value="">Please Select Type of Exercise</option>
+                    <option value="pullups">Pull Ups</option>
+                    <option value="jumpingjacks">Jumping Jacks</option>
+                    <option value="squats">Squats</option>
+                    <option value="pushups">Push Ups</option>
+                    <option value="lunges">Lunges</option>
+                </select>
+            </div>
+            <div>
+                <label for="reps">Target Number of Reps</label>
+                <input type="number" id="reps" name="reps" required>
+            </div>
+            <div>
+                <label for="time">Time (seconds)</label>
+                <input type="number" id="time" name="time" required>
+            </div>
+            <div>
+                <button type="submit">Submit</button>
+            </div>
+        </fieldset>
+    </form>
+    <div id="output"></div>
+
+    <script src="main.js"></script>
+</body>
+</html>
