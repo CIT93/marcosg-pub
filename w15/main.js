@@ -61,3 +61,5 @@ FORM.addEventListener("submit", (e) => {
     SUBMIT.textContent = "Form requires first name and last name ";
   }
 });
+
+
