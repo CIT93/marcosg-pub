@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week - 15 Carbon Footprint pub</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <script type="module" src="main.js"></script>
+
+  <body>
+    <form id="form">
+      <fieldset>
+        <legend>Calculating Your Carbon Footprint Points</legend>
+        <div>
+          <label for="">First Name:</label>
+          <input  type="text" id = "firstName" 
+            name="firstname" 
+          />
+          <span id = "firstNameError" class = "error" ></span>
+        </div>
+        <div>
+          <label for="">Last Name:</label>
+          <input type = "text" id = "lastName" 
+            name="lastname"
+          />
+          <span id = "lastNameError" class = "error" ></span>
+        </div>
+        <div>
+          <label>Count the members of your household</label>
+          <input type="number" name="housem" min="1" max="6" required />
+        </div>
+        <div>
+          <label>Consider the size of your home</label>
+          <select name="houses" required>
+            <option value="">---Please enter size of home---</option>
+            <option value="apt">Apartment</option>
+            <option value="large">Large</option>
+            <option value="medium">Medium</option>
+            <option value="small">Small</option>
+          </select>
+        </div>
+        <div>
+            <label >Evaluate your food choices</label>
+            <select name="food" required>
+                <option value="">---Please enter food choice---</option>
+                <option value="domesticMeatDaily">Donestic meat daily</option>
+                <option value="domesticMeatWeekly">Domestic meat weekly</option>
+                <option value="vegetarian">Vegetarian</option>
+                <option value="veganOrWildMeat">Vegan or Wild meat only</option>
+            </select>
+        </div>
+        <button type="Submit">Submit</button>
+        <span id = "submitError" class = "error" ></span>
+      </fieldset>
+    </form>
+    <div id="table-container"></div>
+    
+   
+  </body>
+</html>
