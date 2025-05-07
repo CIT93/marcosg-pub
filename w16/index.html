@@ -3,30 +3,35 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script type="module" src="main.js"></script>
-    <title>Week 15</title>
+    <title>Week 16</title>
     <link rel="stylesheet" href="style.css" />
   </head>
+  <script type="module" src="main.js"></script>
+
   <body>
     <form id="form">
       <fieldset>
         <legend>Calculating Your Carbon Footprint Points</legend>
         <div>
-          <label>First Name:</label>
-          <input type="text" name="firstname" id="firstName" maxlength="25"/>
-          <span id="firstNameError" class="error"></span>
+          <label for="">First Name:</label>
+          <input  type="text" id = "firstName" 
+            name="firstname" 
+          />
+          <span id = "firstNameError" class = "error" ></span>
         </div>
         <div>
-          <label>Last Name:</label>
-          <input type="text" name="lastname" id="lastName" maxlength="25"/>
-          <span id="lastNameError" class="error"></span>
+          <label for="">Last Name:</label>
+          <input type = "text" id = "lastName" 
+            name="lastname"
+          />
+          <span id = "lastNameError" class = "error" ></span>
         </div>
         <div>
-          <label for="">Count the members of your household</label>
+          <label>Count the members of your household</label>
           <input type="number" name="housem" min="1" max="6" required />
         </div>
         <div>
-          <label for="">Consider the size of your house</label>
+          <label>Consider the size of your home</label>
           <select name="houses" required>
             <option value="">---Please enter size of home---</option>
             <option value="apt">Apartment</option>
@@ -36,47 +41,57 @@
           </select>
         </div>
         <div>
-            <label for="">Evaluate Food Choices</label>
-            <select name="foodChoice">
-              <option value="">---Please select food choices---</option>
-              <option value="meatDaily">Eat domestic meat on daily basis</option>
-              <option value="meatWeekly">eat domestic meat a few times per week</option>
-              <option value="vegetarian">Vegetarian</option>
-              <option value="veganOrWild">Vegan or Only wild meat</option>
+            <label >Evaluate your food choices</label>
+            <select name="food" required>
+                <option value="">---Please enter food choice---</option>
+                <option value="domesticMeatDaily">Donestic meat daily</option>
+                <option value="domesticMeatWeekly">Domestic meat weekly</option>
+                <option value="vegetarian">Vegetarian</option>
+                <option value="veganOrWildMeat">Vegan or Wild meat only</option>
             </select>
-          </div>
-
-          <div>
-            <label>Evaluate Food sources</label>
-            <select name="foodSource" required>
-              <option value="">---Sources of food---</option>
-              <option value="packed">Prepacked convenience food</option>
-              <option value="balance">Good balance of fresh and convenience food</option>
-              <option value="local">Only eat fresh, locally grown, or hunted food</option>
-            </select>
-          </div>
-
-          <div>
-            <label>Water Consumption</label>
-            <select name="water" required>
-              <option value="">---How many times do you run your dishwasher or washing machine---</option>
-              <option value="3">more than 9 times per week</option>
-              <option value="2">between 4 to 9 times per week</option>
-              <option value="1">Between 1 to 3 times per week</option>
-              <option value="0">Don't have a dishwasher</option>
-            </select>
-          </div>
-
-          <div>
-            <label for="">Do you have both a dishwasher and a washining machine</label>
-            <input type="checkbox" id = "dishAndWasher" name = "dishAndWasher"checked>
         </div>
-
-        <button type="submit">Submit</button><br>
-        <span id="submitError" class="error"></span>
+        <div>
+        <label >Evaluate your food sources</label>
+            <select name="foodSource" required>
+                <option value="">---Please enter food source---</option>
+                <option value="packed">Prepackaged convenience food</option>
+                <option value="balance">Good balance of fresh and convenience food</option>
+                <option value="local">Only eat fresh, locally grown, or hunted food</option>
+            </select>
+        </div>
+        <div>
+            <label >Evaluate Water Consumption</label>
+            <select name="water" required>
+                <option value="">---Please ente howe many times you run your diswasher or washing machine---</option>
+              
+                <option value="3">More than 9 times per week</option>
+                <option value="2">Between 4 and 9 times per week</option>
+                <option value="1">Between 1 and 3 times per week </option>
+                <option value="0">Don't have a diswasher</option>
+            </select>
+            <div>
+                <label for="">Do you have both a dishwasher and a washining machine</label>
+                <input type="checkbox" id = "dishAndWasher" name = "dishAndWasher"checked>
+            </div>
+        </div>
+        <div>
+          <label >Household purchases per year</label>
+          <select name="purchase" required>
+              <option value="">---Please enter household purchase per year---</option>
+              <option value="10">More than 7 items purchased</option>
+              <option value="8">Between 5 and 7 items purchased</option>
+              <option value="6">Between 3 and 5 items purchased</option>
+              <option value="4">Less than 3 items purchased</option>
+              <option value="2">Almost nothing or seconhand items purchased</option>
+          </select>
+      </div>
+        <button type="Submit">Submit</button>
+        <span id = "submitError" class = "error" ></span>
       </fieldset>
     </form>
     <div id="tab-data"></div>
-    <table id="table-id"></table>
-    </body>
+    <div id = "table-id"></div>
+    
+   
+  </body>
 </html>

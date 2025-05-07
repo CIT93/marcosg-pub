@@ -1,32 +1,35 @@
 class FP {
-  constructor(
-    first,
-    last,
-    houseMembers,
-    houseSize,
-    foodChoice,
-    foodSource,
-    waterConsum,
-    hasDishAndWasher
-  ) {
+  constructor(first, last, houseMembers, houseSize, foodChoice, foodSource, waterConsum, hasDishAndWasher, itemPurchase) {
     this.first = first;
     this.last = last;
     this.houseMembers = houseMembers;
     this.houseSize = houseSize;
     this.foodChoice = foodChoice;
     this.foodSource = foodSource;
-    this.waterConsumPoints = waterConsum;
+    this.waterConsum = waterConsum;
     this.hasDishAndWasher = hasDishAndWasher;
-    this.waterConsumPoints = FP.calculateWaterPoints(
-      waterConsum,
-      hasDishAndWasher
-    );
+    this.waterConsumPoints = FP.calculateWaterPoints(waterConsum, hasDishAndWasher);
+    this.itemPurchasePoints = itemPurchase;
+
     this.calHouseHoldPoints();
     this.calHouseSizePoints();
     this.calFoodChoicePoints();
     this.calFoodSourcePoints();
     this.calTotal();
   }
+
+  calHouseSizePoints() {
+    if (this.houseSize === "large") {
+      this.houseSizePoints = 10;
+    } else if (this.houseSize === "medium") {
+      this.houseSizePoints = 7;
+    } else if (this.houseSize === "small") {
+      this.houseSizePoints = 4;
+    } else if (this.houseSize === "apt") {
+      this.houseSizePoints = 2;
+    }
+  }
+
   calHouseHoldPoints() {
     if (this.houseMembers === 1) {
       this.houseHoldPoints = 14;
@@ -44,25 +47,15 @@ class FP {
       this.houseHoldPoints = 2;
     }
   }
-  calHouseSizePoints() {
-    if (this.houseSize === "large") {
-      this.houseSizePoints = 10;
-    } else if (this.houseSize === "medium") {
-      this.houseSizePoints = 7;
-    } else if (this.houseSize === "small") {
-      this.houseSizePoints = 4;
-    } else if (this.houseSize === "apt") {
-      this.houseSizePoints = 2;
-    }
-  }
+
   calFoodChoicePoints() {
-    if (this.foodChoice === "meatDaily") {
+    if (this.foodChoice === "domesticMeatDaily") {
       this.foodChoicePoints = 10;
-    } else if (this.foodChoice === "meatWeekly") {
+    } else if (this.foodChoice === "domesticMeatWeekly") {
       this.foodChoicePoints = 8;
     } else if (this.foodChoice === "vegetarian") {
       this.foodChoicePoints = 4;
-    } else if (this.foodChoice === "veganOrWild") {
+    } else if (this.foodChoice === "veganOrWildMeat") {
       this.foodChoicePoints = 2;
     }
   }
@@ -70,7 +63,7 @@ class FP {
   calFoodSourcePoints() {
     if (this.foodSource === "packed") {
       this.foodSourcePoints = 12;
-    } else if (this.foodSource === "balanced") {
+    } else if (this.foodSource === "balance") {
       this.foodSourcePoints = 6;
     } else if (this.foodSource === "local") {
       this.foodSourcePoints = 2;
@@ -83,7 +76,8 @@ class FP {
       this.houseSizePoints +
       this.foodChoicePoints +
       this.foodSourcePoints +
-      this.waterConsumPoints;
+      this.waterConsumPoints+
+      this.itemPurchasePoints;
   }
 
   static calculateWaterPoints(waterConsum, hasDishAndWasher) {
@@ -93,5 +87,4 @@ class FP {
   }
 }
 
-//I only started with the syntax. That, i knew where to start with the method. To know where to reference everything, I didn't know what to do to move forward.
 export { FP };
