@@ -1,4 +1,4 @@
-import { cfpData } from "./storage.js";
+import { cfpData } from "./storage.js";  // Correct import statement
 
 // Calculate the total points for each points based on its properties
 const calculateTotalPoints = (points) => {
