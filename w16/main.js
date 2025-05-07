@@ -3,6 +3,20 @@ import { FORM, FNAME, LNAME, SUBMIT } from "./global.js";
 import { saveLS, cfpData } from "./storage.js";
 import { FP } from "./fp.js";
 
+const waterInput = FORM.water;
+const dishCheckbox = FORM.dishAndWasher;
+
+waterInput.addEventListener("input", () => {
+  const waterValue = parseInt(waterInput.value);
+  if (isNaN(waterValue) || waterValue === 0) {
+    dishCheckbox.checked = false;
+    dishCheckbox.disabled = true;
+  } else {
+    dishCheckbox.disabled = false;
+    dishCheckbox.checked = true;
+  }
+});
+
 const start = (first, last, houseHoldMembers, houseSize) => {
   const houseHoldPts = determineHouseHoldPts(houseHoldMembers);
   const houseSizePts = determineHouseSizePts(houseSize);
@@ -53,6 +67,7 @@ FORM.addEventListener("submit", e => {
       e.target.foodChoice.value,
       e.target.foodSource.value,
       parseInt(e.target.water.value),
+      e.target.dishAndWasher.checked,
 
 
     );
@@ -61,6 +76,10 @@ FORM.addEventListener("submit", e => {
     saveLS(cfpData);
     renderTbl(cfpData);
     FORM.reset();
+
+     // Set checkbox to default checked and enabled state
+     dishCheckbox.checked = true;
+     dishCheckbox.disabled = false;
   } else {
     SUBMIT.textContent = "Form requires first name and last name";
   }

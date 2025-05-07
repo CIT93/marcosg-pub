@@ -1,5 +1,14 @@
 class FP {
-  constructor(first, last, houseMembers, houseSize, foodChoice, foodSource, waterConsum) {
+  constructor(
+    first,
+    last,
+    houseMembers,
+    houseSize,
+    foodChoice,
+    foodSource,
+    waterConsum,
+    hasDishAndWasher
+  ) {
     this.first = first;
     this.last = last;
     this.houseMembers = houseMembers;
@@ -7,6 +16,11 @@ class FP {
     this.foodChoice = foodChoice;
     this.foodSource = foodSource;
     this.waterConsumPoints = waterConsum;
+    this.hasDishAndWasher = hasDishAndWasher;
+    this.waterConsumPoints = FP.calculateWaterPoints(
+      waterConsum,
+      hasDishAndWasher
+    );
     this.calHouseHoldPoints();
     this.calHouseSizePoints();
     this.calFoodChoicePoints();
@@ -63,12 +77,19 @@ class FP {
     }
   }
 
-
-
-
   calTotal() {
     this.total =
-      this.houseHoldPoints + this.houseSizePoints + this.foodChoicePoints + this.foodSourcePoints + this.waterConsumPoints;
+      this.houseHoldPoints +
+      this.houseSizePoints +
+      this.foodChoicePoints +
+      this.foodSourcePoints +
+      this.waterConsumPoints;
+  }
+
+  static calculateWaterPoints(waterConsum, hasDishAndWasher) {
+    const value = parseInt(waterConsum);
+    if (isNaN(value) || value === 0) return 0;
+    return hasDishAndWasher ? value * 2 : value;
   }
 }
 
